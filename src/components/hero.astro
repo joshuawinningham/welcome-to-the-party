@@ -1,0 +1,133 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../images/hero-image.png';
+---
+
+<section class="hero">
+  <Image src={heroImage} alt="Hero image" width={1440} height={800} class="hero-image" />
+  <div class="hero-content">
+    <h1 class="hero-title">A Wonderful Headline for a Wonderful Product (Probably)</h1>
+    <p class="hero-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia augue at libero auctor bibendum. Duis pretium at enim a vehicula.</p>
+    <a href="#newsletter" class="button">Learn more &rarr;</a>
+  </div>
+</section>
+
+<style>
+  :root {
+    --hero-gradient-color: rgba(7, 0, 235, 0.7);
+    --hero-text-color: white;
+    --hero-text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(auto, 800px);
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 800px;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero::after {
+    content: '';
+    grid-column: 1 / -1;
+    grid-row: 1;
+    background: linear-gradient(to left, 
+      var(--hero-gradient-color) 0%,
+      rgba(7, 0, 235, 0.65) 10%,
+      rgba(7, 0, 235, 0.6) 20%,
+      rgba(7, 0, 235, 0.55) 30%,
+      rgba(7, 0, 235, 0.5) 40%,
+      rgba(7, 0, 235, 0.45) 50%,
+      rgba(7, 0, 235, 0.4) 60%,
+      rgba(7, 0, 235, 0.35) 70%,
+      rgba(7, 0, 235, 0.3) 80%,
+      rgba(7, 0, 235, 0.2) 90%,
+      rgba(7, 0, 235, 0) 100%
+    );
+  }
+
+  .hero-content {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(1rem, 3vw, 2rem);
+    color: var(--hero-text-color);
+    text-shadow: var(--hero-text-shadow);
+    z-index: 1;
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+    line-height: 1.4;
+    margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+      grid-column: 1;
+      padding: clamp(1rem, 5vw, 2rem);
+      background: linear-gradient(to bottom, 
+        var(--hero-gradient-color) 0%,
+        rgba(7, 0, 235, 0.6) 20%,
+        rgba(7, 0, 235, 0.5) 40%,
+        rgba(7, 0, 235, 0.4) 60%,
+        rgba(7, 0, 235, 0.2) 80%,
+        rgba(7, 0, 235, 0) 100%
+      );
+      justify-content: flex-start;
+    }
+
+    .hero::after {
+      background: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-content {
+      justify-content: flex-start;
+    }
+
+    .hero-title {
+      font-size: clamp(1.25rem, 5vw, 1.5rem);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+    }
+
+    .button {
+      font-size: 0.75rem;
+      padding: 0.6em 1em;
+    }
+  }
+</style>

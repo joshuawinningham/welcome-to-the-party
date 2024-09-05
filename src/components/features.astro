@@ -1,0 +1,67 @@
+---
+import Feature from './feature.astro';
+import calendar from '../images/calendar.png';
+import memories from '../images/memories.png';
+import friends from '../images/friends.png';
+
+const features = [
+  {
+    image: {
+      src: calendar,
+      alt: 'Calendar',
+    },
+    heading: 'Create Fun Events',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia augue at libero auctor bibendum.',
+    url: '#create-events',
+  },
+  {
+    image: {
+      src: memories,
+      alt: 'Memories',
+    },
+    heading: 'Capture Memories',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia augue at libero auctor bibendum.',
+    url: '#create-memories',
+  },
+  {
+    image: {
+      src: friends,
+      alt: 'Friends',
+    },
+    heading: 'Make New Friends',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia augue at libero auctor bibendum.',
+    url: '#make-friends',
+  },
+];
+
+---
+
+<div class="features">
+ {features.map((feature) => (
+  <Feature {...feature} />
+ ))}
+</div>
+
+<style>
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .features {
+      grid-template-columns: 1fr;
+    }
+
+    :global(.feature img) {
+      margin: 0 auto;
+    }
+  }
+</style>
+
+
+

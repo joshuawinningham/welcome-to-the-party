@@ -1,0 +1,143 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+	</head>
+	<body>
+    <header>
+     <a class="header-link" rel="home" href="/">
+        <span class="header-name">NeverFriendless</span>
+        <span class="header-tagline">Party Planning for Maximum Friendship</span>
+      </a>
+    </header>
+    <main>
+		<slot />
+    </main> 
+    <footer>
+      <small>&copy; {new Date().getFullYear()} NeverFriendless</small>
+    </footer>
+	</body>
+</html>
+
+
+<style is: global>
+  :root {
+    --color-brand: #0700EB;
+    --color-bg: #FEFBFD;
+    --color-bg-muted: #F3E8F0;
+    --color-heading: #030137;
+    --color-text: #35345A;
+    --color-text-muted: #4C4C61;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    color: var(--color-text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  body {
+    background: var(--color-bg);
+    margin: 0;
+  }
+
+  .button {
+    background: var(--color-brand);
+    border: 1px solid var(--color-heading);
+    color: var(--color-bg);
+    display: inline-block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+.button:hover,
+.button:focus {
+  background: color-mix(in oklch, var(--color-brand), var(--color-bg) 10% );
+  transform: scale(1.02);
+}
+</style>
+
+
+
+  <style>
+  header {
+    background: var(--color-brand);
+    color: var(--color-bg);
+    padding: 1rem min(2rem, 5vw);
+  }
+
+  .header-link {
+    color: var(--color-bg); 
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-link:hover,
+  .header-link:focus {
+    text-decoration: none; 
+    opacity: 0.9;
+  }
+
+  .header-name {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 800;
+    font-style: normal;
+    line-height: 1;
+  }
+
+  .header-tagline {
+    display: block;
+    font-size: clamp(0.4rem, 1.5vw, 0.52rem);
+    line-height: 1;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  footer small {
+    display: inline-block;
+  }
+
+  @media (max-width: 480px) {
+    .header-link {
+      align-items: flex-start;
+    }
+
+  }
+</style>
